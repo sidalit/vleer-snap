@@ -1,0 +1,10 @@
+--- a/src/ui/app.rs
++++ b/src/ui/app.rs
+@@ -539 +539 @@
+-            app_id: Some("vleer".to_string()),
++            app_id: Some("vleer_vleer".to_string()),
+--- a/src/media/controller/linux.rs
++++ b/src/media/controller/linux.rs
+@@ -88 +88 @@
+-            .desktop_entry("vleer")
++            .desktop_entry("vleer_vleer")

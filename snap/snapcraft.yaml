@@ -1,0 +1,80 @@
+name: vleer
+base: core26
+version: git-a3188f7
+title: Vleer
+icon: snap/gui/vleer.png
+summary: Native music player with a local library, lyrics and equalizer
+description: |
+  Play your local music with Vleer, a native music player with a folder
+  scanner, automatic metadata and artwork, lyrics, ReplayGain and a
+  parametric equalizer. This snap packages an upstream development snapshot.
+license: AGPL-3.0-only
+grade: devel
+confinement: strict
+website: https://vleer.app
+source-code:
+  - https://github.com/vleerapp/vleer
+  - https://github.com/sidalit/vleer-snap
+issues:
+  - https://github.com/vleerapp/vleer/issues
+  - https://github.com/sidalit/vleer-snap/issues
+contact: https://github.com/sidalit/vleer-snap/issues
+
+platforms:
+  amd64:
+  arm64:
+
+slots:
+  mpris:
+    interface: mpris
+
+apps:
+  vleer:
+    command: bin/vleer-launch
+    extensions: [gnome]
+    slots: [mpris]
+    plugs:
+      - audio-playback
+      - home
+      - network
+      - removable-media
+
+parts:
+  vleer:
+    plugin: rust
+    source: https://github.com/vleerapp/vleer.git
+    source-commit: a3188f7f843bbd9faf6cbe43c05d7546e672be30
+    source-depth: 1
+    rust-channel: '1.99.0'
+    build-environment:
+      - CARGO_BUILD_JOBS: $CRAFT_PARALLEL_BUILD_COUNT
+    build-packages:
+      - build-essential
+      - pkg-config
+      - cmake
+      - libasound2-dev
+      - libfontconfig1-dev
+      - libfreetype-dev
+      - libx11-dev
+      - libxcb1-dev
+      - libxcursor-dev
+      - libxi-dev
+      - libxkbcommon-dev
+      - libxkbcommon-x11-dev
+      - libwayland-dev
+      - libvulkan-dev
+      - libdbus-1-dev
+      - patch
+    stage-packages:
+      - libasound2-plugins
+      - libxkbcommon-x11-0
+    override-pull: |
+      craftctl default
+      patch -p1 < "$CRAFT_PROJECT_DIR/snap/patches/desktop-integration.patch"
+    override-build: |
+      craftctl default
+      install -Dm755 "$CRAFT_PROJECT_DIR/snap/local/vleer-launch" \
+        "$CRAFT_PART_INSTALL/bin/vleer-launch"
+      install -Dm644 "$CRAFT_PROJECT_DIR/snap/local/asound.conf" \
+        "$CRAFT_PART_INSTALL/etc/alsa/alsa.conf"
+      install -Dm644 LICENSE "$CRAFT_PART_INSTALL/usr/share/doc/vleer/LICENSE"

@@ -1,0 +1,7 @@
+*.snap
+*.comp
+/parts/
+/stage/
+/prime/
+/.snapcraft/
+/.snapcraft-cache/

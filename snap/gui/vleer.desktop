@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Vleer
+GenericName=Music Player
+Comment=Play your local music with lyrics, artwork and an equalizer
+Icon=${SNAP}/meta/gui/vleer.png
+Exec=vleer
+Terminal=false
+Categories=AudioVideo;Audio;Player;
+Keywords=music;audio;player;lyrics;
+StartupWMClass=vleer_vleer
+StartupNotify=true
