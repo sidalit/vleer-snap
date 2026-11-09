@@ -64,13 +64,9 @@ parts:
       - libwayland-dev
       - libvulkan-dev
       - libdbus-1-dev
-      - patch
     stage-packages:
       - libasound2-plugins
       - libxkbcommon-x11-0
-    override-pull: |
-      craftctl default
-      patch -p1 < "$CRAFT_PROJECT_DIR/snap/patches/desktop-integration.patch"
     override-build: |
       craftctl default
       install -Dm755 "$CRAFT_PROJECT_DIR/snap/local/vleer-launch" \

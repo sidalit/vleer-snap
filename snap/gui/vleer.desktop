@@ -8,5 +8,5 @@ Exec=vleer
 Terminal=false
 Categories=AudioVideo;Audio;Player;
 Keywords=music;audio;player;lyrics;
-StartupWMClass=vleer_vleer
+StartupWMClass=vleer
 StartupNotify=true
