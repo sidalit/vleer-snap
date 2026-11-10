@@ -49,8 +49,6 @@ Library data and caches stay in `~/snap/vleer/common/` between updates.
 
 ## Build
 
-Automated builds are deferred until the shared workflow supports commit-only upstreams.
-
 ```bash
 git clone https://github.com/sidalit/vleer-snap.git
 cd vleer-snap
